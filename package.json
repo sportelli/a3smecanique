@@ -1,0 +1,36 @@
+{
+  "name": "a3smecanique",
+  "version": "1.0.0",
+  "description": "website a3smecanique.fr",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sportelli/a3smecanique.git"
+  },
+  "keywords": [
+    "a3smecanique",
+    "cintrage",
+    "tube",
+    "laser",
+    "electrique",
+    "thermique"
+  ],
+  "author": "Felix SPORTELLI",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sportelli/a3smecanique/issues"
+  },
+  "homepage": "http://a3smecanique.fr/",
+  "dependencies": {
+    "express": "^4.16.2",
+    "pug": "^2.0.0-rc.4"
+  },
+  "devDependencies": {
+    "@types/node": "^8.5.1",
+    "typescript": "^2.6.2",
+    "typescript-eslint-parser": "^11.0.0"
+  }
+}
