@@ -15,9 +15,11 @@ class App {
     }
     private mountRoutes(): void {
         const router = express.Router();
-        this.pagesDAO.pages.forEach(element => {
-            router.get('/' + element.id, (req, res) => {
-                res.render("page", {"page": element, "pages": this.pagesDAO.pages});
+        this.pagesDAO.getPages(function (data) {
+            data.forEach(element => {
+                router.get('/' + element.id, (req, res) => {
+                    res.render("page", {"page": element, "pages": data});
+                });
             });
         });
         this.express.use('/', router);
