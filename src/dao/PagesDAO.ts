@@ -1,18 +1,26 @@
-import * as fs from 'fs';
+import {DAO} from './DAO';
 
-class PagesDAO {
-    private _pages: any;
+class PagesDAO extends DAO {
+    private _pages: any = null;
 
     constructor() {
-        // TODO: A supprimer quand MongoDB prêt
-        this._pages = JSON.parse(fs.readFileSync('./data/pages.json', 'utf8'));
+        super();
     }
 
     public getPages(cb): void {
-        cb(this._pages);
-    }
-
-    private getPageById(): void {
+        super.getDb(function (err, db) {
+            if (!err) {
+                db.collection('pages', function (err2, collection) {
+                    if (!err) {
+                        collection.find().toArray(function (err3, pages) {
+                            cb(null, pages);
+                        });
+                    } else {
+                        cb(err);
+                    }
+                });
+            }
+        });
     }
 }
 

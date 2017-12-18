@@ -1,6 +1,5 @@
 import * as express from 'express';
 import * as path from 'path';
-// import * as pagesDAO from './dao/PagesDAO';
 import {PagesDAO} from "./dao/PagesDAO";
 
 
@@ -15,12 +14,17 @@ class App {
     }
     private mountRoutes(): void {
         const router = express.Router();
-        this.pagesDAO.getPages(function (data) {
-            data.forEach(element => {
-                router.get('/' + element.id, (req, res) => {
-                    res.render("page", {"page": element, "pages": data});
-                });
-            });
+        this.pagesDAO.getPages(function (err, data) {
+            if (!err) {
+                console.log(data.length + " pages");
+                if (data !== null) {
+                    data.forEach(element => {
+                        router.get('/' + element.id, (req, res) => {
+                            res.render("page", {"page": element, "pages": data});
+                        });
+                    });
+                }
+            }
         });
         this.express.use('/', router);
         this.express.use(express.static(path.join(__dirname, '../static')));
