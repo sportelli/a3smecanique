@@ -16,12 +16,22 @@ class App {
         const router = express.Router();
         this.pagesDAO.getPages(function (err, data) {
             if (!err) {
-                console.log(data.length + " pages");
+                console.log(data.length + " menus");
                 if (data !== null) {
                     data.forEach(element => {
-                        router.get('/' + element.id, (req, res) => {
-                            res.render("page", {"page": element, "pages": data});
-                        });
+                        if (element.type !== "menu") {
+                            router.get('/' + element.id, (req, res) => {
+                                res.render("page", {"page": element, "pages": data});
+                            });
+                        } else {
+                            if (element.pages !== null) {
+                                element.pages.forEach(souspage => {
+                                    router.get('/' + souspage.id, (req, res) => {
+                                        res.render("page", {"page": souspage, "pages": data});
+                                    });
+                                });
+                            }
+                        }
                     });
                 }
             }

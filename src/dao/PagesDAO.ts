@@ -12,7 +12,7 @@ class PagesDAO extends DAO {
             if (!err) {
                 db.collection('pages', function (err2, collection) {
                     if (!err) {
-                        collection.find().toArray(function (err3, pages) {
+                        collection.find().sort({order: 1}).toArray(function (err3, pages) {
                             cb(null, pages);
                         });
                     } else {

@@ -15,10 +15,17 @@ html
         div#navbarNavDropdown.collapse.navbar-collapse
             ul.navbar-nav
                 each p in pages
-                    li.nav-item
-                        if (p.id == page.id)
-                            a.nav-link.active(href=p.id)= p.title
-                        else
-                            a.nav-link(href="/"+p.id)= p.title
+                    if (p.type != "menu")
+                        li.nav-item
+                            if (p.id == page.id)
+                                a.nav-link.active(href=p.id)= p.title
+                            else
+                                a.nav-link(href="/"+p.id,toto=p.type+"")= p.title
+                    else
+                        li.nav-item.dropdown 
+                            a#navbarDropdown.nav-link.dropdown-toggle(href="#",role="button",data-toggle="dropdown",aria-haspopup="true",aria-expanded="false")= p.title
+                            div.dropdown-menu(aria-labelledby="navbarDropdown")
+                                each souspage in p.pages
+                                    a.dropdown-item(href="/"+souspage.id)= souspage.title
     div.container-fluid
         block content
