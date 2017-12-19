@@ -1,0 +1,52 @@
+[
+    {
+        "id" : "",
+        "title" : "Accueil",
+        "content" : "<img src=\"http://www.a3smecanique.fr/wp-content/themes/adventurous/images/demo/slider-2-1600x600.jpg\" style=\"width:100%\" alt=\"Kathmandu Durbar Square\" title=\"A3S Mecanique - Laser Tube Cintrage Tournage\"><p style=\"margin-left: 10%; font-family: verdana !important; font-size: 16px;\"><strong>Bienvenue sur le site de la société A3S.</strong></p><p><img src=\"http://www.a3smecanique.fr/wp-content/uploads/2017/07/logoA3S20ans-1.png\" alt=\"logo A3S 20 ans\" style=\"width:200px; margin-left:20%;\"/></p>"
+    },
+    {
+        "id" : "histoire-2",
+        "title" : "Histoire",
+        "content" : "<b>bo</b>histoire"
+    },
+    {
+        "id" : "processus-usinage-2",
+        "title" : "Processus usinage",
+        "content" : "<b>bo</b>histoire"
+    },
+    {
+        "id" : "processus-outillage",
+        "title" : "Processus Outillage",
+        "content" : "<b>bo</b>histoire"
+    },
+    {
+        "id" : "actualites-2",
+        "title" : "Actualités",
+        "content" : "<b>bo</b>histoire"
+    },
+    {
+        "id" : "portfolio",
+        "title" : "Portfolio",
+        "content" : "<b>bo</b>histoire"
+    },
+    {
+        "id" : "machines-occasions",
+        "title" : "Machines occasions",
+        "content" : "liste machines"
+    },
+    {
+        "id" : "machines-completes",
+        "title" : "Machines complètes",
+        "content" : "<b>bo</b>histoire"
+    },
+    {
+        "id" : "ils-nous-font-confiance",
+        "title" : "Ils nous font confiance",
+        "content" : "<b>bo</b>histoire"
+    },
+    {
+        "id" : "contact",
+        "title" : "Contact",
+        "content" : "<b>bo</b>histoire"
+    }
+]

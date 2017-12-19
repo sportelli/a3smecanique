@@ -1,7 +1,7 @@
 import * as express from 'express';
 import * as path from 'path';
 import {PagesDAO} from "./dao/PagesDAO";
-
+const config = require('../config.json');
 
 class App {
     public express;
@@ -21,13 +21,13 @@ class App {
                     data.forEach(element => {
                         if (element.type !== "menu") {
                             router.get('/' + element.id, (req, res) => {
-                                res.render("page", {"page": element, "pages": data});
+                                res.render("page", {"page": element, "pages": data, "config": config});
                             });
                         } else {
                             if (element.pages !== null) {
                                 element.pages.forEach(souspage => {
                                     router.get('/' + souspage.id, (req, res) => {
-                                        res.render("page", {"page": souspage, "pages": data});
+                                        res.render("page", {"page": souspage, "pages": data, "config": config});
                                     });
                                 });
                             }
@@ -43,5 +43,4 @@ class App {
     }
 }
 
-// export default new App().express;
 export {App};

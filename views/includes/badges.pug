@@ -1,0 +1,19 @@
+if ( i == 0 )
+    <div class="row">
+
+if (i % 5 == 0)
+    </div>
+    <div class="row">
+
+    div.col-xs-5.card(style="width: 10rem; margin-left: 20px; margin-bottom: 20px;")
+        img.card-img-top(src=badge.image,alt=badge.image)
+        div.card-body
+        p.card-text.mx-auto=badge.name
+        a.btn.btn-primary(href=badge.url) Visiter
+
+else 
+    div.col-xs-5.card(style="width: 10rem; margin-left: 20px;margin-bottom: 20px;")
+        img.card-img-top(src=badge.image,alt=badge.image)
+        div.card-body
+        p.card-text.mx-auto=badge.name
+        a.btn.btn-primary(href=badge.url) Visiter

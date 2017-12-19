@@ -4,3 +4,13 @@ block content
   h1= page.title
   p !{page.content}
 
+  if (page.type == "slider")
+    include includes/slider.pug
+  else if (page.type == "contact")
+    include includes/contact.pug
+  else if (page.type == "badges")
+    - var i = 0
+    div.container
+      each badge in page.badges 
+        include includes/badges.pug
+        - i = i + 1
