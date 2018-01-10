@@ -1,0 +1,26 @@
+h2=machine.name
+div.container
+    div.row
+        div.col-xs-12.col-md-6.align-middle
+            if (machine.featuredVideo != null)
+                video(width="640",height="500",preload="metadata", controls="controls",poster=machine.featuredImage,style="width:100%",controlsList="nodownload")
+                    source(type="video/mp4",src=machine.featuredVideo)
+            else
+                img(src=machine.featuredImage, style="width:100%")
+        div.col-xs-12.col-md-6.align-middle
+            p !{machine.description}
+            if (machine.links)
+                ul 
+                each link in machine.links 
+                    li 
+                        a(href=link.url, target="_blank")=link.text
+            if (machine.state == "sold")
+                img(src="/occasions/vendu.png")
+if (machine.gallery != null)
+    - var idgallery = "nanogallery" + m
+    div(id=idgallery,data-nanogallery2='{"thumbnailHeight": 210, "thumbnailWidth": 210,"thumbnailL1GutterWidth":  30,"itemsBaseURL":""}')
+        each image in machine.gallery
+            p=image
+            a(href=image) &nbsp;
+
+hr(style="margin-bottom:50px; margin-top:50px; background-color:black;height:5px")

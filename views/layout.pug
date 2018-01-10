@@ -1,13 +1,13 @@
 doctype html
 html
   head
-    title= title
+    title= page.title
     link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous")
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(src="https://code.jquery.com/jquery-3.2.1.slim.min.js", integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN", crossorigin="anonymous")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js", integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh", crossorigin="anonymous")
     script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js", integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ", crossorigin="anonymous")
-    if (page.type == "slider")
+    if ((page.type == "slider") || (page.type == "machines"))
         link(href="https://unpkg.com/nanogallery2@2.0.0/dist/css/nanogallery2.min.css",rel="stylesheet",type="text/css")
         script(type="text/javascript",src="https://unpkg.com/nanogallery2@2.0.0/dist/jquery.nanogallery2.min.js")
 
@@ -33,4 +33,13 @@ html
                                 each souspage in p.pages
                                     a.dropdown-item(href="/"+souspage.id)= souspage.title
     div.container-fluid
+        ol.breadcrumb
+            li.breadcrumb-item 
+                a(href="/") A3S Mecanique
+            li.breadcrumb-item.active=page.title
         block content
+    footer
+        p 
+            | Copyright &copy; 2018 
+            a(href="http://www.a3smecanique.fr/",title="A3S Mécanique") A3S Mécanique.  
+            | All Rights Reserved.
