@@ -49,7 +49,7 @@ class App {
         });
 
         this.express.use('/', router);
-        this.express.use(express.static(path.join(__dirname, '../static')));
+        this.express.use(express.static(path.join(__dirname, '../static'), {maxage: '1d'}));
         this.express.set('views', path.join(__dirname, '../views'));
         this.express.set('view engine', 'pug');
     }
