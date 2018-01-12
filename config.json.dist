@@ -1,3 +1,4 @@
 {
-  "google_maps_key" : ""   
+  "google_maps_key" : "" ,
+  "cdn_prefix: ""
 }

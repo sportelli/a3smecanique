@@ -9,11 +9,11 @@ if (i % 5 == 0)
         img.card-img-top(src=badge.image,alt=badge.image)
         div.card-body
         p.card-text.mx-auto=badge.name
-        a.btn.btn-primary(href=badge.url,target="_blank") Visiter
+        a.btn.btn-primary(href=config.cdn_prefix+badge.url,target="_blank") Visiter
 
 else 
     div.col-xs-5.card(style="width: 10rem; margin-left: 20px;margin-bottom: 20px;")
         img.card-img-top(src=badge.image,alt=badge.image)
         div.card-body
         p.card-text.mx-auto=badge.name
-        a.btn.btn-primary(href=badge.url,target="_blank") Visiter
+        a.btn.btn-primary(href=config.cdn_prefix+badge.url,target="_blank") Visiter
