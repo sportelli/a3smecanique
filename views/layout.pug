@@ -33,13 +33,13 @@ html
                                 each souspage in p.pages
                                     a.dropdown-item(href="/"+souspage.id)= souspage.title
     div.container-fluid
-        ol.breadcrumb
+        ol.breadcrumb.bg-light
             li.breadcrumb-item 
                 a(href="/") A3S Mecanique
             li.breadcrumb-item.active=page.title
         block content
-    footer
-        p 
+    footer.footer.bg-light
+        span.text-muted
             | Copyright &copy; 2018 
             a(href="http://www.a3smecanique.fr/",title="A3S Mécanique") A3S Mécanique.  
-            | All Rights Reserved.
+            | Tous droits réservés - Mentions légales
