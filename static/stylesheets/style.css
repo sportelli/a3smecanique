@@ -1,0 +1,28 @@
+.navbar {
+    margin-bottom: 20px;
+}
+
+#histoire-2 div.row {
+    padding-top: 15px;
+}
+
+#histoire-2 div.row p {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+#actualites-2 img {
+    margin-bottom: 5px;
+}
+
+h3 {
+    margin-top: 30px;
+}
+
+#portfolio img {
+    width: 100%;
+}
+
+p {
+    font-size: 14px;
+}
