@@ -1,6 +1,8 @@
+import * as AWS from 'aws-sdk';
+
 class EmailSender {
     public send(data, config) {
-        const AWS = require('aws-sdk');
+        // const AWS = require('aws-sdk');
         const ses = new AWS.SES(
             {
                 accessKeyId: config.aws_ses_access_key,
