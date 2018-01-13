@@ -3,7 +3,7 @@ div.container
     div.row
         div.col-xs-12.col-md-6.align-middle
             if (machine.featuredVideo != null)
-                video(width="640",height="500",preload="metadata", controls="controls",poster=config.cdn_prefix+machine.featuredImage,style="width:100%",controlsList="nodownload")
+                video(width="640",height="500",preload="none", controls="controls",poster=config.cdn_prefix+machine.featuredImage,style="width:100%",controlsList="nodownload")
                     source(type="video/mp4",src=config.cdn_prefix+machine.featuredVideo)
             else
                 img(src=config.cdn_prefix+machine.featuredImage, style="max-width:100%;max-height:400px;")
