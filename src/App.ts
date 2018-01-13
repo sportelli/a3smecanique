@@ -49,7 +49,16 @@ class App {
         });
 
         this.express.use('/', router);
-        this.express.use(express.static(path.join(__dirname, '../static'), {maxage: '1d'}));
+
+        function setCustomCacheControl(_res) {
+            _res.setHeader("Expires", new Date(Date.now() + 2592000000).toUTCString());
+        }
+
+        this.express.use(express.static(path.join(__dirname, '../static'),
+            {
+                "maxAge": '1d',
+                "setHeader": setCustomCacheControl
+            }));
         this.express.set('views', path.join(__dirname, '../views'));
         this.express.set('view engine', 'pug');
     }
