@@ -4,6 +4,7 @@ import * as request from 'request';
 import * as path from 'path';
 import {PagesDAO} from "./dao/PagesDAO";
 import {MachinesDAO} from './dao/MachinesDAO';
+import { EmailSender } from './utils/EmailSender';
 const config = require('../config.json');
 
 class App {
@@ -68,6 +69,11 @@ class App {
                 if (b.success !== undefined && !b.success) {
                     return res.json({"responseCode": 1, "responseDesc": "Failed captcha verification"});
                 } else {
+                    const htmlContent = "Email de " + req.body.name + "<br />" + "Email: " + req.body.email +
+                                        "<br />" + "Tel: " + req.body.tel +
+                                        "<br />" + "Message: " + req.body.message;
+                    const d = {"content": htmlContent, subject: "Nouveau message de " + b.name};
+                    new EmailSender().send(d, config);
                     res.json({"responseCode": 0, "responseDesc": "Success"});
                 }
             });
