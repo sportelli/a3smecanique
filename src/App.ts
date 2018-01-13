@@ -1,4 +1,6 @@
 import * as express from 'express';
+import {json, raw, text, urlencoded} from 'body-parser';
+import * as request from 'request';
 import * as path from 'path';
 import {PagesDAO} from "./dao/PagesDAO";
 import {MachinesDAO} from './dao/MachinesDAO';
@@ -48,7 +50,30 @@ class App {
             }
         });
 
+        this.express.use(json());
+        this.express.use(raw());
+        this.express.use(text());
+        this.express.use(urlencoded({extended: true}));
+
         this.express.use('/', router);
+
+        router.post('/contact_sent', (req, res) => {
+            const secretKey = config.recaptcha_private_key;
+            const verificationUrl = "https://www.google.com/recaptcha/api/siteverify?secret=" +
+                                        secretKey + "&response=" + req.body['g-recaptcha-response'] +
+                                        "&remoteip=" + req.connection.remoteAddress;
+
+            request(verificationUrl, function (error, response, body) {
+                const b = JSON.parse(body);
+                if (b.success !== undefined && !b.success) {
+                    return res.json({"responseCode": 1, "responseDesc": "Failed captcha verification"});
+                } else {
+                    res.json({"responseCode": 0, "responseDesc": "Success"});
+                }
+            });
+
+        });
+
 
         function setCustomCacheControl(_res) {
             _res.setHeader("Expires", new Date(Date.now() + 2592000000).toUTCString());
@@ -57,7 +82,7 @@ class App {
         this.express.use(express.static(path.join(__dirname, '../static'),
             {
                 "maxAge": '1d',
-                "setHeader": setCustomCacheControl
+                "setHeaders": setCustomCacheControl
             }));
         this.express.set('views', path.join(__dirname, '../views'));
         this.express.set('view engine', 'pug');

@@ -1,21 +1,27 @@
 div.row
-    div.col-sm-8
-        form(method="post",action="contact_sent")
+    div.col-sm-8#contact-div
+        form#contact-form(method="post",action="contact_sent")
             div.form-group
-                label(for="exampleInputName") Nom
-                input(type="text",class="form-control" id="exampleInputName" placeholder="Votre nom",required)
+                label(for="InputName") Nom
+                input(type="text",class="form-control" id="InputName" placeholder="Votre nom",required)
             div.form-group
-                label(for="exampleInputTel") Téléphone
-                input(type="text",class="form-control" id="exampleInputTel" placeholder="Votre téléphone",required)
+                label(for="InputTel") Téléphone
+                input(type="text",class="form-control" id="InputTel" placeholder="Votre téléphone",required)
             div.form-group
-                label(for="exampleInputEmail1") Email
-                input(type="email",class="form-control",id="exampleInputEmail1",aria-describedby="emailHelp",placeholder="Votre email",required)
+                label(for="InputEmail1") Email
+                input(type="email",class="form-control",id="InputEmail1",aria-describedby="emailHelp",placeholder="Votre email",required)
                 small#emailHelp.form-text.text-muted Votre e-mail ne sera jamais affiché publiquement.
             div.form-group
                 label(for="message") Votre message
                 textarea#message.form-control(rows="5", placeholder="Votre message",required)
+            div.g-recaptcha(data-sitekey="6LfvjkAUAAAAAOaJm2syTPk7k0iUfHe599TjP-7O")
                 
             button#submitButton.btn.btn-primary(type="submit") Envoyer
+        #errorMessage.alert.alert-danger.d-none
+            | Il semble y avoir eu un problème, merci de nous contacter directement au 03 23 65 12 12.
+        #successMessage.alert.alert-success.d-none
+            | Merci pour votre message, nous vous recontacterons dans les plus brefs délais.
+
     div.col-sm-4
         p 
             | Voie d’Urvillers <br />

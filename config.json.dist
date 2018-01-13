@@ -1,5 +1,7 @@
 {
   "google_maps_key" : "" ,
   "cdn_prefix: "",
-  "ga_tracking_code" : ""
+  "ga_tracking_code" : "",
+  "recaptcha_public_key" : "",
+  "recaptcha_private_key" : ""
 }
