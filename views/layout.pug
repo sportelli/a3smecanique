@@ -45,3 +45,11 @@ html
             | Copyright &copy; 2018 
             a(href="http://www.a3smecanique.fr/",title="A3S Mécanique") A3S Mécanique.  
             | Tous droits réservés - Mentions légales
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    script(async,src="https://www.googletagmanager.com/gtag/js?id=" + config.ga_tracking_code)
+    script.
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '#{config.ga_tracking_code}');

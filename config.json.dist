@@ -1,4 +1,5 @@
 {
   "google_maps_key" : "" ,
-  "cdn_prefix: ""
+  "cdn_prefix: "",
+  "ga_tracking_code" : ""
 }
