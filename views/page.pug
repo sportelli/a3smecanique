@@ -2,7 +2,8 @@ extends layout
 
 block content
   div(id=page.id)
-    h1= page.title
+    if (page.showTitle !== false)
+      h1= page.title
     hr
     p !{page.content}
 

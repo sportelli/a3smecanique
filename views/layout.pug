@@ -3,19 +3,16 @@
 doctype html
 html(lang="fr")
   head
-    title= page.title
-    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous")
+    - title = page.title
+    if (page.meta_title != undefined)
+        - title = page.meta_title
+    title= title
+    if (page.meta_description != undefined)
+        meta(name="description",content=page.meta_description)
+
+    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css",integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm",crossorigin="anonymous")
     link(rel='stylesheet', href='/stylesheets/style.css')
     link(rel="shortcut icon", href="/favicon.jpg" type="image/x-icon")
-    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")
-    script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js", integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh", crossorigin="anonymous")
-    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js", integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ", crossorigin="anonymous")
-    script(type="text/javascript",src="https://cdn.jsdelivr.net/npm/cookie-bar/cookiebar-latest.min.js?noGeoIp=1")
-    if ((page.type == "slider") || (page.type == "machines"))
-        link(href="https://unpkg.com/nanogallery2@2.0.0/dist/css/nanogallery2.min.css",rel="stylesheet",type="text/css")
-        script(type="text/javascript",src="https://unpkg.com/nanogallery2@2.0.0/dist/jquery.nanogallery2.min.js")
-    if (page.type == "contact")
-        script(src='https://www.google.com/recaptcha/api.js')
 
   body
     nav.navbar.navbar-expand-lg.navbar-light.bg-white
@@ -50,6 +47,20 @@ html(lang="fr")
             a(href="http://www.a3smecanique.fr/",title="A3S Mécanique") A3S Mécanique.  
             | Tous droits réservés - Mentions légales
     
+
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js", integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q", crossorigin="anonymous")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js", integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl",crossorigin="anonymous")
+    script(type="text/javascript",src="https://cdn.jsdelivr.net/npm/cookie-bar/cookiebar-latest.min.js?noGeoIp=1")
+    if ((page.type == "slider") || (page.type == "machines"))
+        link(href="https://unpkg.com/nanogallery2@2.0.0/dist/css/nanogallery2.min.css",rel="stylesheet",type="text/css")
+        script(type="text/javascript",src="https://unpkg.com/nanogallery2@2.0.0/dist/jquery.nanogallery2.min.js")
+    if (page.type == "contact")
+        script(src='https://www.google.com/recaptcha/api.js')
+        script(src="/scripts/contact.js",type="text/javascript")
+        - var url="https://maps.googleapis.com/maps/api/js?key=" + config.google_maps_key + "&callback=initMap"
+        script(async,defer,src=url)
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
     script(async,src="https://www.googletagmanager.com/gtag/js?id=" + config.ga_tracking_code)
     script.
