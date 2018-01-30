@@ -92,6 +92,7 @@ class App {
             }));
         this.express.set('views', path.join(__dirname, '../views'));
         this.express.set('view engine', 'pug');
+        this.express.set('view cache', true);
     }
 }
 
