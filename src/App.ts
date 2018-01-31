@@ -1,4 +1,5 @@
 import * as express from 'express';
+import * as sitemap from 'sitemap';
 import {json, raw, text, urlencoded} from 'body-parser';
 import * as request from 'request';
 import * as path from 'path';
@@ -21,6 +22,10 @@ class App {
     private mountRoutes(): void {
         const router = express.Router();
         const machinesDAO = this.machinesDAO;
+        const sm = sitemap.createSitemap({
+            hostname: "https://" + config.url,
+            cacheTime: 600000
+        });
 
         this.pagesDAO.getPages(function (err, data) {
             if (!err) {
@@ -28,6 +33,7 @@ class App {
                 if (data !== null) {
                     data.forEach(element => {
                         if ((element.type !== "menu")) {
+                            sm.add({url: '/' + element.id});
                             router.get('/' + element.id, (req, res) => {
                                 if (element.type === "machines") {
                                     machinesDAO.getMachines(function (errMachines, machines) {
@@ -41,6 +47,7 @@ class App {
                             });
                         } else if ((element.pages !== null) && (element.pages !== undefined)) {
                             element.pages.forEach(souspage => {
+                                sm.add({url: '/' + souspage.id});
                                 router.get('/' + souspage.id, (req, res) => {
                                     res.render("page", {"page": souspage, "pages": data, "config": config});
                                 });
@@ -93,6 +100,11 @@ class App {
         this.express.set('views', path.join(__dirname, '../views'));
         this.express.set('view engine', 'pug');
         this.express.set('view cache', true);
+
+        router.get('/sitemap.xml', function (req, res) {
+            res.setHeader('Content-Type', 'application/xml');
+            res.send(sm.toString());
+        });
     }
 }
 

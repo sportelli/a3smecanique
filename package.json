@@ -32,7 +32,8 @@
     "mongodb": "^2.2.33",
     "pug": "^2.0.0-rc.4",
     "request": "^2.83.0",
-    "typings": "^2.1.1"
+    "typings": "^2.1.1",
+    "sitemap": "1.13.0"
   },
   "devDependencies": {
     "@types/node": "^8.5.1",

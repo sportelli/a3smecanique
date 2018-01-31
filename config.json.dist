@@ -5,5 +5,8 @@
   "recaptcha_public_key" : "",
   "recaptcha_private_key" : "",
   "recipientContactEmail" : "",
-  "url" : ""
+  "url" : "",
+  "aws_region" : "eu-west-1",
+  "aws_ses_access_key" : "",
+  "aws_ses_private_key" : ""
 }
