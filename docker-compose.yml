@@ -5,6 +5,7 @@ services:
     restart: always
     environment:
       MONGO_SERV: mongodb://db:27018/a3s
+      NODE_ENV: ${NODE_ENV}
     ports:
       - 3000:3000
 #    volumes:
