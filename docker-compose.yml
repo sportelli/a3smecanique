@@ -1,0 +1,20 @@
+version: '3.3'
+services: 
+  frontend:
+    image: a3smecanique
+    restart: always
+    environment:
+      MONGO_SERV: mongodb://db:27018/a3s
+    ports:
+      - 3000:3000
+#    volumes:
+#      - ${A3S_PATH}:/app
+  db:
+    image: mongo:3
+    restart: always
+    ports:
+      - 27018:27017
+    volumes: 
+      - a3smecanique_database:/data/db
+volumes:
+  a3smecanique_database:

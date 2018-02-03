@@ -1,0 +1,8 @@
+# Site A3S
+
+En dev, pour créer un volume basé sur un répertoire de dev 
+
+```
+docker volume create --name a3smecanique_a3smecanique_data -o type=none -o device=/Users/xxx/a3smecanique/ -o o=bind
+```
+
