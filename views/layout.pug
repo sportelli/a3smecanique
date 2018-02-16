@@ -23,18 +23,20 @@ html(lang="fr")
         div#navbarNavDropdown.collapse.navbar-collapse
             ul.navbar-nav
                 each p in pages
+                    - p_id = p.id
                     if (p.type != "menu")
                         li.nav-item
                             if (p.id == page.id)
-                                a.nav-link.active(href=p.id)= p.title
+                                a.nav-link.active(id=p_id,href=p.id)= p.title
                             else
-                                a.nav-link(href="/"+p.id,toto=p.type+"")= p.title
+                                a.nav-link(id=p_id,href="/"+p.id,toto=p.type+"")= p.title
                     else
                         li.nav-item.dropdown 
                             a#navbarDropdown.nav-link.dropdown-toggle(href="#",role="button",data-toggle="dropdown",aria-haspopup="true",aria-expanded="false")= p.title
                             div.dropdown-menu(aria-labelledby="navbarDropdown")
                                 each souspage in p.pages
-                                    a.dropdown-item(href="/"+souspage.id)= souspage.title
+                                    - p_id = souspage.id
+                                    a.dropdown-item(id=p_id,href="/"+souspage.id)= souspage.title
     div.container-fluid
         ol.breadcrumb.bg-light
             li.breadcrumb-item 
