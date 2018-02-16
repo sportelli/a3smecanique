@@ -14,3 +14,9 @@ test('Test plusieurs machines', async t => {
         .click('#machines-doccasion')
         .expect(Selector('body').find('h2').count).gt(2);
 });
+
+test('Copie d\'écran', async t => {
+    await t
+        .click('#machines-doccasion')
+        .takeScreenshot('screenshot.png');
+});
