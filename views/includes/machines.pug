@@ -16,6 +16,9 @@ div.container
                         a(href=config.cdn_prefix+link.url, target="_blank")=link.text
             if (machine.state == "sold")
                 img(src=config.cdn_prefix + "/occasions/vendu.png")
+            p
+                a(href="/contact") 
+                    button.btn.btn-primary(type="submit") Contactez-nous
 if (machine.gallery != null)
     - var idgallery = "nanogallery" + m
     div(id=idgallery,data-nanogallery2='{"thumbnailHeight": 210, "thumbnailWidth": 210,"thumbnailL1GutterWidth":  30,"itemsBaseURL":""}')
