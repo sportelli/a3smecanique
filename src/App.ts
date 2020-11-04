@@ -22,6 +22,7 @@ class App {
     private mountRoutes(): void {
         const router = express.Router();
         const machinesDAO = this.machinesDAO;
+        const pagesDAO = this.pagesDAO;
         const sm = sitemap.createSitemap({
             hostname: "https://" + config.url,
             cacheTime: 600000
@@ -36,20 +37,37 @@ class App {
                             sm.add({url: '/' + element.id});
                             router.get('/' + element.id, (req, res) => {
                                 if (element.type === "machines") {
-                                    machinesDAO.getMachines(function (errMachines, machines) {
+                                    machinesDAO.getMachines(function (errMachines, machines) {/*Machine est l'élement */
                                         if (!errMachines) {
                                             res.render("page", {"page": element, "pages": data, "config": config, "machines": machines});
                                         }
                                     });
                                 } else {
-                                    res.render("page", {"page": element, "pages": data, "config": config});
+                                    console.log(element._id)//element page en cours 
+                                    pagesDAO.getPagesId(element._id, function (errPages, toto){        //db.pages.find({"_id": element._id}
+                                    if (!errPages) {    
+                                        console.log("!!")
+                                        console.log(toto)
+                                        console.log("!!")
+                                        res.render("page", {"page": toto[0], "pages": data, "config": config});
+                                        }
+                                    });
                                 }
                             });
                         } else if ((element.pages !== null) && (element.pages !== undefined)) {
                             element.pages.forEach(souspage => {
                                 sm.add({url: '/' + souspage.id});
                                 router.get('/' + souspage.id, (req, res) => {
-                                    res.render("page", {"page": souspage, "pages": data, "config": config});
+                                    //modifier
+                                    pagesDAO.getSousPage(element.id, souspage.id, function (errPages, idSousPage){
+                                        if (!errPages){
+                                            console.log("??")
+                                            console.log(idSousPage)
+                                            console.log("??")
+                                            res.render("page", {"page": idSousPage, "pages": data, "config": config});
+                                        }
+                                    })
+                                    //res.render("page", {"page": souspage, "pages": data, "config": config});
                                 });
                             });
                         }
