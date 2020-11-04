@@ -43,12 +43,8 @@ class App {
                                         }
                                     });
                                 } else {
-                                    console.log(element._id)//element page en cours 
-                                    pagesDAO.getPagesId(element._id, function (errPages, toto){        //db.pages.find({"_id": element._id}
-                                    if (!errPages) {    
-                                        console.log("!!")
-                                        console.log(toto)
-                                        console.log("!!")
+                                    pagesDAO.getPagesId(element._id, function (errPages, toto){
+                                    if (!errPages) {
                                         res.render("page", {"page": toto[0], "pages": data, "config": config});
                                         }
                                     });
@@ -58,16 +54,11 @@ class App {
                             element.pages.forEach(souspage => {
                                 sm.add({url: '/' + souspage.id});
                                 router.get('/' + souspage.id, (req, res) => {
-                                    //modifier
                                     pagesDAO.getSousPage(element.id, souspage.id, function (errPages, idSousPage){
                                         if (!errPages){
-                                            console.log("??")
-                                            console.log(idSousPage)
-                                            console.log("??")
                                             res.render("page", {"page": idSousPage, "pages": data, "config": config});
                                         }
                                     })
-                                    //res.render("page", {"page": souspage, "pages": data, "config": config});
                                 });
                             });
                         }
