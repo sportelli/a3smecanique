@@ -16,4 +16,4 @@ our problem was that we couldn't display were database update on the website. It
 
 ## how to resolve this ?
 in pagesDAO we have added different functions that will allow us to load the data of the pages when we click on one of the pages.
-    these functions are very adventages for the maintenance in the web site because if  you need executate modification in the database, these update will be done by itself,       it's not necessary to restart the server   
+    these functions are very useful for the maintenance of the website because if you need execute modification in the database, these update will be done by itself, it's not       necessary to restart the server   
