@@ -13,4 +13,4 @@ Date:   Wed Nov 4 18:57:23 2020 +0100
 
 
 in pagesDAO we have added different functions that will allow us to load the data of the pages when we click on one of the pages.
-    these functions are very adventages for the maintenance in the web site because if  you need executate modification in the database, these update will be done by itself,       it's not necessary to restart de server   
+    these functions are very adventages for the maintenance in the web site because if  you need executate modification in the database, these update will be done by itself,       it's not necessary to restart the server   
