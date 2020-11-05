@@ -12,9 +12,5 @@ Date:   Wed Nov 4 18:57:23 2020 +0100
     Update App.ts
 
 
-in pagesDAO we have added different functions that will allow us to load the data of the pages when we click on one of the pages.x
-
-
-## in pagesDAO we have added different functions that will allow us to load the data of the pages when we click on one of the pages. 
-
-## ces fonctions sont très avantageuses pour la maintenance du site car s'il faut exécuter de modification sur la base de données les mettre à jour de données se feront toutes seules sans besoin de relancer notre serveur
+in pagesDAO we have added different functions that will allow us to load the data of the pages when we click on one of the pages.
+    ces fonctions sont très avantageuses pour la maintenance du site car s'il faut exécuter de modification sur la base de données les mettre à jour de données se feront toutes seules sans besoin de relancer notre serveur
