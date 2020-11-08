@@ -26,3 +26,16 @@ h3 {
 p {
     font-size: 14px;
 }
+
+.cat_machines > li{
+    text-align: center;
+}
+
+.cat_machines li > a{
+    display: block;
+    padding: 30px;
+}
+
+.cat_machines li > a.active{
+    background: #efefef;
+}

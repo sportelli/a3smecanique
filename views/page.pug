@@ -18,7 +18,44 @@ block content
           include includes/badges.pug
           - i = i + 1
     else if (page.type == "machines")
-      - var m = 0
-      each machine in machines
-        include includes/machines.pug
-        - m = m + 1
+      ul.nav.nav-tabs.cat_machines
+        li(role="presentation")
+          a(href="#cintrage", class="active" data-toggle="tab") 
+            span CINTRAGE / BENDING
+            br
+            img(src=config.cdn_prefix+"/Photo 1 cintrage27.jpg", class='img-fluid')
+            
+        
+
+        li(role="presentation")
+          a(href="#faconnage", data-toggle="tab") 
+            span FACONNAGE / END FORMING
+            br
+            img(src=config.cdn_prefix+"/IMG_0261 web27.png", class='img-fluid')
+            
+
+        li(role="presentation")
+          a(href="#autres", data-toggle="tab") 
+            span AUTRES / OTHERS
+            br           
+            img(src=config.cdn_prefix+"/TAG227.png", class='img-fluid')
+      div.tab-content
+        - var m = 0
+        div#cintrage.tab-pane.active
+          h2= "1- CINTRAGE / BENDING"
+          each machine in machines
+            if (machine.type == "cintrage")
+              include includes/machines.pug
+              - m = m + 1
+        div#faconnage.tab-pane.fade
+          h2= "2- FACONNAGE / END FORMING"
+          each machine in machines
+            if (machine.type == "faconnage")
+              include includes/machines.pug
+              - m = m + 1
+        div#autres.tab-pane.fade
+          h2= "3- AUTRES / OTHERS"
+          each machine in machines
+            if (machine.type == "autres")
+              include includes/machines.pug
+              - m = m + 1
