@@ -1,6 +1,6 @@
 function initMap() {
     console.log("init map");
-    let uluru = {lat: 49.80554, lng: 3.331094};
+    let uluru = {lat: 49.818435, lng: 3.298093};
     let map = new google.maps.Map(document.getElementById('map'), {
         zoom: 16,
         center: uluru
