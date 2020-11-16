@@ -22,7 +22,9 @@ h3 {
 #portfolio img {
     width: 100%;
 }
-
+ul{
+    margin-bottom: 50px;
+}
 p,li {
     font-size: 14px;
 }
