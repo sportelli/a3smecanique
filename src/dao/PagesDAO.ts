@@ -10,10 +10,13 @@ class PagesDAO extends DAO {
     public async getPages() {
         try {
             const db = await super.getDb();
-            return await db.collection('pages').find().sort({ order: 1 }).toArray();
+            console.log(db);
+            const collection = db.collection('pages')
+            const pages = await collection.find().sort({ order: 1 }).toArray();
+            return pages;
         }
         catch (err) {
-            throw new Error("Impossible de récupérer les pages.");
+            throw new Error("Impossible de récupérer les pages." + err);
         }
     }
 
@@ -21,7 +24,7 @@ class PagesDAO extends DAO {
     public async getPagesId(_id) {
         try {
             const db = await super.getDb();
-            return await db.collection('pages').find({ "_id": _id }).toArray();
+            return db.collection('pages').find({ "_id": _id }).toArray();
         }
         catch (err) {
             throw new Error("Impossible de trouver la page");
@@ -34,10 +37,12 @@ class PagesDAO extends DAO {
     public async getSousPage(pageId, sousPageId) {
         try {
             const db = await super.getDb()
-            const page = await db.collection('pages').find({ "id": pageId }).toArray()
+            const collection = db.collection('pages');
+            const page = await collection.find({ "id": pageId }).toArray()
+
             for (let i = 0; i < page[0].pages.length; i++) {
                 if (page[0].pages[i].id === sousPageId) {
-
+                    return page[0].pages[i];
                 }
 
             }

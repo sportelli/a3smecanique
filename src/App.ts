@@ -37,7 +37,7 @@ class App {
                     if (element.type === "machines") {
                         try {
                             const machines = await machinesDAO.getMachines();
-                            return await res.render("page", { "page": element, "pages": data, "config": config, "machines": machines });
+                            return res.render("page", { "page": element, "pages": data, "config": config, "machines": machines });
                         }
                         catch (err) {
                             throw new Error("Impossible d'afficher la page machines" + err);
@@ -46,7 +46,7 @@ class App {
                     } else {
                         try {
                             const toto = await pagesDAO.getPagesId(element._id)
-                            return await res.render("page", { "page": toto[0], "pages": data, "config": config });
+                            return res.render("page", { "page": toto[0], "pages": data, "config": config });
                         }
                         catch (err) {
                             throw new Error("Impossible d'afficher la page actuelle" + err);
@@ -60,8 +60,8 @@ class App {
                     sm.add({ url: '/' + souspage.id });
                     router.get('/' + souspage.id, async (req, res) => {
                         try {
-                            const data = await pagesDAO.getSousPage(element.id, souspage.id);
-                            return await res.render("page", { "page": souspage.id, "pages": data, "config": config });
+                            const idSousPage = await pagesDAO.getSousPage(element.id, souspage.id);
+                            return res.render("page", { "page": idSousPage, "pages": data, "config": config });
                         }
                         catch (err) {
                             throw new Error("Impossible de charger la sous pages" + err);
