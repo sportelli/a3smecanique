@@ -7,47 +7,45 @@ class PagesDAO extends DAO {
         super();
     }
     //recuperation de toutes les pages
-    public getPages(cb): void {
-        try{
-        const db = await super.getDb();
-        return db.collection('pages').find().sort({ order: 1 }).toArray();
+    public async getPages() {
+        try {
+            const db = await super.getDb();
+            return await db.collection('pages').find().sort({ order: 1 }).toArray();
         }
-        catch(err){
+        catch (err) {
             throw new Error("Impossible de récupérer les pages.");
         }
     }
 
     //recuperer une page avec id
-    public getPagesId(_id): void {
-        const db = await super.getDb();
-        return db.collection('pages').find({ "_id": _id }).toArray()
+    public async getPagesId(_id) {
+        try {
+            const db = await super.getDb();
+            return await db.collection('pages').find({ "_id": _id }).toArray();
+        }
+        catch (err) {
+            throw new Error("Impossible de trouver la page");
+        }
     }
 
-}
+
 
     //sosu page
-    public getSousPage(pageId, sousPageId, cb): void {
-    super.getDb(function (err, db) {
-        if (!err) {
-            db.collection('pages', function (err2, collection) {
-                if (!err) {
-                    collection.find({ "id": pageId }).toArray(function (err3, page) {
-                        for (let i = 0; i < page[0].pages.length; i++) {
-                            if (page[0].pages[i].id === sousPageId) {
-                                cb(null, page[0].pages[i]);
-                            }
-                        }
+    public async getSousPage(pageId, sousPageId) {
+        try {
+            const db = await super.getDb()
+            const page = await db.collection('pages').find({ "id": pageId }).toArray()
+            for (let i = 0; i < page[0].pages.length; i++) {
+                if (page[0].pages[i].id === sousPageId) {
 
-                    });
-                } else {
-                    cb(err);
                 }
-            });
+
+            }
+
+        } catch {
+            throw new Error("Impossible de récupérer les sous pages.");
         }
-    });
+
+    }
 }
-
-
-}
-
 export { PagesDAO };

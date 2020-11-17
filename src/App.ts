@@ -19,7 +19,7 @@ class App {
         this.machinesDAO = new MachinesDAO();
         this.mountRoutes();
     }
-    private mountRoutes(): void {
+    private async mountRoutes(): Promise<void> {
         const router = express.Router();
         const machinesDAO = this.machinesDAO;
         const pagesDAO = this.pagesDAO;
@@ -28,43 +28,51 @@ class App {
             cacheTime: 600000
         });
 
-        this.pagesDAO.getPages(async function (err, data) {
-            if (!err) {
-                console.log(data.length + " menus");
-                if (data !== null) {
-                    data.forEach(element => {
-                        if ((element.type !== "menu")) {
-                            sm.add({ url: '/' + element.id });
-                            router.get('/' + element.id, async (req, res) => {
-                                if (element.type === "machines") {
-                                    machinesDAO.getMachines(async function (errMachines, machines) {/*Machine est l'élement */
-                                        if (!errMachines) {
-                                            res.render("page", { "page": element, "pages": data, "config": config, "machines": machines });
-                                        }
-                                    });
-                                } else {
-                                    let toto = await pagesDAO.getPagesId(element._id)
-                                    res.render("page", { "page": toto[0], "pages": data, "config": config });
+        const data = await this.pagesDAO.getPages();
+        console.log(data.length + " menus");
+        data.forEach(element => {
+            if ((element.type !== "menu")) {
+                sm.add({ url: '/' + element.id });
+                router.get('/' + element.id, async (req, res) => {
+                    if (element.type === "machines") {
+                        try {
+                            const machines = await machinesDAO.getMachines();
+                            return await res.render("page", { "page": element, "pages": data, "config": config, "machines": machines });
+                        }
+                        catch (err) {
+                            throw new Error("Impossible d'afficher la page machines" + err);
+                        }
+
+                    } else {
+                        try {
+                            const toto = await pagesDAO.getPagesId(element._id)
+                            return await res.render("page", { "page": toto[0], "pages": data, "config": config });
+                        }
+                        catch (err) {
+                            throw new Error("Impossible d'afficher la page actuelle" + err);
+                        }
 
 
-                                }
-                            });
-                        } else if ((element.pages !== null) && (element.pages !== undefined)) {
-                            element.pages.forEach(souspage => {
-                                sm.add({ url: '/' + souspage.id });
-                                router.get('/' + souspage.id, (req, res) => {
-                                    pagesDAO.getSousPage(element.id, souspage.id, function (errPages, idSousPage) {
-                                        if (!errPages) {
-                                            res.render("page", { "page": idSousPage, "pages": data, "config": config });
-                                        }
-                                    })
-                                });
-                            });
+                    }
+                });
+            } else if ((element.pages !== null) && (element.pages !== undefined)) {
+                element.pages.forEach(async souspage => {
+                    sm.add({ url: '/' + souspage.id });
+                    router.get('/' + souspage.id, async (req, res) => {
+                        try {
+                            const data = await pagesDAO.getSousPage(element.id, souspage.id);
+                            return await res.render("page", { "page": souspage.id, "pages": data, "config": config });
+                        }
+                        catch (err) {
+                            throw new Error("Impossible de charger la sous pages" + err);
                         }
                     });
-                }
+                });
             }
         });
+
+
+
 
         this.express.use(json());
         this.express.use(raw());

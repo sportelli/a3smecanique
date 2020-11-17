@@ -7,7 +7,8 @@ class DAO {
     public async getDb() {
         require('dotenv').config();
         try {
-           return await (MongoClient.connect(process.env.MONGO_SERV));
+           const db = await (MongoClient.connect(process.env.MONGO_SERV));
+           return await db;
         }
         catch (err) {
             console.log('il ya eu un problème' + err);
