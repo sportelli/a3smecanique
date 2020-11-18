@@ -38,17 +38,15 @@ class App {
                         try {
                             const machines = await machinesDAO.getMachines();
                             return res.render("page", { "page": element, "pages": data, "config": config, "machines": machines });
-                        }
-                        catch (err) {
+                        } catch (err) {
                             throw new Error("Impossible d'afficher la page machines" + err);
                         }
 
                     } else {
                         try {
-                            const toto = await pagesDAO.getPagesId(element._id)
+                            const toto = await pagesDAO.getPagesId(element._id);
                             return res.render("page", { "page": toto[0], "pages": data, "config": config });
-                        }
-                        catch (err) {
+                        } catch (err) {
                             throw new Error("Impossible d'afficher la page actuelle" + err);
                         }
 
@@ -62,17 +60,13 @@ class App {
                         try {
                             const idSousPage = await pagesDAO.getSousPage(element.id, souspage.id);
                             return res.render("page", { "page": idSousPage, "pages": data, "config": config });
-                        }
-                        catch (err) {
+                        } catch (err) {
                             throw new Error("Impossible de charger la sous pages" + err);
                         }
                     });
                 });
             }
         });
-
-
-
 
         this.express.use(json());
         this.express.use(raw());
@@ -87,7 +81,7 @@ class App {
                 secretKey + "&response=" + req.body['g-recaptcha-response'] +
                 "&remoteip=" + req.connection.remoteAddress;
 
-            request(verificationUrl, function (error, response, body) {
+            request(verificationUrl, async function (error, response, body) {
                 const b = JSON.parse(body);
                 if (b.success !== undefined && !b.success) {
                     return res.json({ "responseCode": 1, "responseDesc": "Failed captcha verification" });
