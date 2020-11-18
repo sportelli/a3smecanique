@@ -1,4 +1,4 @@
-import {DAO} from './DAO';
+import { DAO } from './DAO';
 
 class MachinesDAO extends DAO {
     private _pages: any = null;
@@ -7,21 +7,15 @@ class MachinesDAO extends DAO {
         super();
     }
 
-    public getMachines(cb): void {
-        super.getDb(function (err, db) {
-            if (!err) {
-                db.collection('machines', function (err2, collection) {
-                    if (!err) {
-                        collection.find().sort({order: 1}).toArray(function (err3, machines) {
-                            cb(null, machines);
-                        });
-                    } else {
-                        cb(err);
-                    }
-                });
-            }
-        });
+    public async getMachines(): Promise<void> {
+        try {
+            const db = await super.getDb();
+            return await db.collection('machines').find().sort({ order: 1 }).toArray();
+        } catch (err) {
+            throw new Error("Impossible de récupérer les machines" + err);
+        }
+
     }
 }
 
-export {MachinesDAO};
+export { MachinesDAO };

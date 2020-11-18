@@ -4,15 +4,15 @@ const MongoClient = require('mongodb').MongoClient;
 class DAO {
     protected db;
 
-    public getDb(cb):any {
+    public async getDb() {
         require('dotenv').config();
-        MongoClient.connect(process.env.MONGO_SERV, function (err, db) {
-            if (!err) {
-                cb(err, db);
-            } else {
-                cb(err);
-            }
-        });
+        try {
+            const db = await MongoClient.connect(process.env.MONGO_SERV);
+            return db.db('a3s');
+        } catch (err) {
+            console.log('il ya eu un problème' + err);
+        }
     }
 }
-export {DAO};
+
+export { DAO };
