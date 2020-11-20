@@ -17,24 +17,32 @@ html(lang="fr")
   body
     nav.navbar.navbar-expand-lg.navbar-light.bg-white
         a.navbar-brand(href="/") 
-            img(src=config.cdn_prefix+"/logo-header.png")
+            img(src=config.cdn_prefix+"/logo-header-New.png")
         button.navbar-toggler(type="button",data-toggle="collapse",data-target="#navbarNavDropdown", aria-controls="navbarNavDropdown", aria-expanded="false", aria-label="Toggle navigation")
             span.navbar-toggler-icon
         div#navbarNavDropdown.collapse.navbar-collapse
             ul.navbar-nav
                 each p in pages
                     if (p.type != "menu")
-                        li.nav-item
-                            if (p.id == page.id)
-                                a.nav-link.active(href=p.id)= p.title
-                            else
-                                a.nav-link(href="/"+p.id,toto=p.type+"")= p.title
+                        if(p.id == "contact")
+                            li.nav-item.rectangleContact
+                                if (p.id == page.id)
+                                    a.nav-link.active(href=p.id)= p.title
+                                else
+                                    a.nav-link(href="/"+p.id,toto=p.type+"")= p.title
+                        else
+                            li.nav-item
+                                if (p.id == page.id)
+                                    a.nav-link.active(href=p.id)= p.title
+                                else
+                                    a.nav-link(href="/"+p.id,toto=p.type+"")= p.title
                     else
                         li.nav-item.dropdown 
                             a#navbarDropdown.nav-link.dropdown-toggle(href="#",role="button",data-toggle="dropdown",aria-haspopup="true",aria-expanded="false")= p.title
                             div.dropdown-menu(aria-labelledby="navbarDropdown")
                                 each souspage in p.pages
                                     a.dropdown-item(href="/"+souspage.id)= souspage.title
+                    li.nav-item.rectangleBleu
     div.container-fluid
         ol.breadcrumb.bg-light
             li.breadcrumb-item 
@@ -43,7 +51,7 @@ html(lang="fr")
         block content
     footer.footer.bg-light(style="padding-bottom:0px;text-align:center;")
         span.text-muted
-            | Copyright &copy; 2018 
+            | Copyright &copy; 2020
             a(href="https://" + config.url,title="A3S Mécanique") A3S Mécanique.  
             | Tous droits réservés - Mentions légales
     

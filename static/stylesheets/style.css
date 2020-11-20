@@ -22,25 +22,76 @@ h3 {
 #portfolio img {
     width: 100%;
 }
-ul{
+
+ul {
     margin-bottom: 50px;
 }
-p,li {
+
+p,
+li {
     font-size: 14px;
 }
 
-.cat_machines > li{
+.cat_machines>li {
     text-align: center;
 }
 
-.cat_machines li > a{
+.cat_machines li>a {
     display: block;
     padding: 30px;
 }
 
-.cat_machines li > a.active{
+.cat_machines li>a.active {
     background: #efefef;
 }
-.container{
+
+.container {
     margin-bottom: 50px;
+}
+div.collapse.navbar-collapse{
+    height: 70px;
+
+}
+
+a.nav-link.rectangleContact{
+    font-size: 20px;
+}
+a.nav-link {
+    height: 35px;
+    font-size: 14px;
+    font-weight: bold;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    color: #1d1d1d;
+}
+@media screen and (min-width: 1200px) {
+    .rectangleContact {
+        height: 50px;
+        width: 100px;
+        background-color: #1d1d1d;
+        position: absolute;
+        right: 80px;
+        z-index: 3;
+        padding: 0;
+        text-align: center;
+        color: white;
+        vertical-align: center;
+    }
+
+    li.rectangleContact > a {
+        color: white !important;
+        font-size: 20px;
+    }
+    
+    .rectangleBleu {
+        height: 105px;
+        width: 50px;
+        background-color: blue;
+        position: absolute;
+        right: 50px;
+        top: 40px;
+        content: '';
+    }
 }
