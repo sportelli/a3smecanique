@@ -48,25 +48,28 @@ li {
 .container {
     margin-bottom: 50px;
 }
-div.collapse.navbar-collapse{
+
+div.collapse.navbar-collapse {
     height: 70px;
 
 }
 
-a.nav-link.rectangleContact{
-    font-size: 20px;
-}
-a.nav-link {
-    height: 35px;
-    font-size: 14px;
-    font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: normal;
-    letter-spacing: normal;
-    color: #1d1d1d;
-}
 @media screen and (min-width: 1200px) {
+    a.nav-link.rectangleContact {
+        font-size: 20px;
+    }
+
+    a.nav-link {
+        height: 35px;
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #1d1d1d;
+    }
+
     .rectangleContact {
         height: 50px;
         width: 100px;
@@ -80,11 +83,11 @@ a.nav-link {
         vertical-align: center;
     }
 
-    li.rectangleContact > a {
+    li.rectangleContact>a {
         color: white !important;
         font-size: 20px;
     }
-    
+
     .rectangleBleu {
         height: 105px;
         width: 50px;
