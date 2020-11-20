@@ -49,13 +49,11 @@ li {
     margin-bottom: 50px;
 }
 
-div.collapse.navbar-collapse {
-    height: 70px;
-
-}
-
-@media screen and (min-width: 1200px) {
-
+@media only screen and (min-width: 1200px) {
+    
+    div.collapse.navbar-collapse {
+        height: 70px;
+    }
     a.nav-link {
         height: 35px;
         font-size: 14px;
