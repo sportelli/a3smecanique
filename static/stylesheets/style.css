@@ -55,9 +55,6 @@ div.collapse.navbar-collapse {
 }
 
 @media screen and (min-width: 1200px) {
-    a.nav-link.rectangleContact {
-        font-size: 20px;
-    }
 
     a.nav-link {
         height: 35px;
