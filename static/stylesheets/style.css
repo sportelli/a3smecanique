@@ -48,6 +48,13 @@ li {
 .container {
     margin-bottom: 50px;
 }
+.logo_datadock {
+    width: 24%;
+    display: inline-block;
+}
+.logo_qualiopi {
+    display: inline-block;
+}
 
 @media only screen and (min-width: 1200px) {
     
@@ -91,5 +98,25 @@ li {
         right: 50px;
         top: 40px;
         content: '';
+    }
+
+    .logo_datadock {
+        width: 21%;
+        display: inline-block;
+    }
+    .logo_qualiopi {
+        display: inline-block;
+        width: 38%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .logo_datadock {
+        width: 35%;
+        display: inline-block;
+    }
+    .logo_qualiopi {
+        display: inline-block;
+        width: 35%;
     }
 }
