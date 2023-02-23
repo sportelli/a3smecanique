@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@types/node": "^8.10.66",
-    "testcafe": "^2.2.0",
+    "testcafe": "^15.1.317922",
     "typescript": "^2.6.2",
     "typescript-eslint-parser": "^11.0.0"
   }
