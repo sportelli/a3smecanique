@@ -7,7 +7,7 @@ class DAO {
     public async getDb() {
         require('dotenv').config();
         try {
-            const db = await MongoClient.connect(process.env.MONGO_SERV);
+            const db = await MongoClient.connect(process.env.MONGO_SERV, {useUnifiedTopology: true});
             return db.db('a3s');
         } catch (err) {
             console.log('il ya eu un problème' + err);
